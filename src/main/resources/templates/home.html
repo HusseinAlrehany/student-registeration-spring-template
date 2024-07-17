@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <Title>SPRING BOOT CRUD APP</Title>
+
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/cosmo/bootstrap.min.css" />
+    <script src=
+                    "https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" ></script>
+
+</head>
+
+<body>
+
+<div>
+    <h2>SPRING BOOT CRUD APPLICATION</h2>
+    <tr>
+        <div align="left">
+            <h3><a th:href="@{'/addNewStudent'}" class="btn btn-info"> +New Student</a></h3>
+
+        </div>
+
+    </tr>
+    <tr>
+
+        <div class="col-sm-5" align = "center">
+            <div class="panel-body" align = "center">
+                <table class="table">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th>Student ID</th>
+                        <th>Student Name</th>
+                        <th>Course</th>
+                        <th>Fee</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="student:${listStudents}">
+                        <td th:text="${student.id}">Student ID</td>
+                        <td th:text="${student.studentName}">Student Name</td>
+                        <td th:text="${student.course}">Course</td>
+                        <td th:text="${student.fee}">Fee</td>
+                        <td>
+                            <a th:href="@{/showFormForUpdate(studentId=${student.id})}"
+                            class="btn btn-info btn-sm">Edit</a>
+                        </td>
+                        <td>
+                           <a th:href="@{/deleteStudent(studentId=${student.id})}"
+                             class="btn btn-danger btn-sm"
+                              onclick="if(!(confirm('Are You Sure You Want To Delete This Student?'))) return false">Delete</a>
+                        </td>
+
+                    </tr>
+                    </tbody>
+
+
+                </table>
+
+            </div>
+
+        </div>
+    </tr>
+
+
+</div>
+
+</body>
+
+
+
+</html>
